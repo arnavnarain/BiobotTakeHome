@@ -1,4 +1,15 @@
 .dropdown { 
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.dropdown-item { 
+    align-self: center;
     border: 1px solid black;
     cursor: pointer;
+    max-width: 50%;
+    text-align: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }

@@ -12,7 +12,6 @@ const KitSearch = () => {
             try {
                 const queryParams = `?kitInput=${kitInput}`;
                 const response = await fetch(`http://localhost:9000/kitSearch/filter${queryParams}`);
-                console.log(response);
                 if (response.status === 404) {
                     console.log(response);
                     setShippingCode('Invalid Kit Label');
@@ -36,17 +35,20 @@ const KitSearch = () => {
                 onChange={(e) => setKitInput(e.target.value)}
             />
             <button onClick={fetchKit}> Search/Autocomplete </button>
-            {matchingKits.length > 1 && matchingKits.map((kit, index) => (
-                <div
-                    className="dropdown"
-                    onClick={() => {
-                        setKitInput(kit.label_id)
-                    }}>
-                    <br />
-                    <l1 key={index}>{kit.label_id}</l1>
-                </div>
-            ))}
+            <div className="dropdown">
+                {matchingKits.length > 0 && matchingKits.map((kit, index) => (
+                    <div
+                        className="dropdown-item"
+                        onClick={() => {
+                            setKitInput(kit.label_id)
+                        }}>
+                        <br />
+                        <l1 key={index}>{kit.label_id}</l1>
+                    </div>
+                ))}
+            </div>
             <p>{shippingCode}</p>
+
         </>
     )
 }
